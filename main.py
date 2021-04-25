@@ -10,15 +10,16 @@ if __name__ == '__main__':
     print("Starting to make initial configuration.")
     get_config()  # Q1
     init_mol = None
-    with open("molecule.xyz") as f:
+    with open("new_molecule.xyz") as f:
         print("Initial Configuration Generated for Arg LJ Model")
         print("Initial COnfiguration for Q1 will the saved to molecule.xyz")
         init_mol = Molecule(f, "Angstrom")
         print("Starting to do Q2 and Q3...")
         e = get_energy(np.array(init_mol.geom))  # Q2
+        # print(e)
         # Q3 Steapest Descend is a heuristic.. Needs tuning of parameters...
         print("Starting Steepest Descent Algoithm to minimise Energy...")
-        g = gradient_descent(0.001, 100, init_mol.geom)
+        g = gradient_descent(0.135, 100, init_mol.geom)
         print("Steepest Descent Algoithm Ended.. Results below\n")
         print("Original Energy: ", e)
         print("New Energy:", np.min(np.array(g[1])))
@@ -30,7 +31,7 @@ if __name__ == '__main__':
             print(file=f2)
             for p in g[0][i]:
                 print(
-                    f"C {abs(np.mean(pbc_sep(p[0],0)))} {abs(np.mean(pbc_sep(p[1],0)))} {abs(np.mean(pbc_sep(p[2],0)))}", file=f2)
+                    f"C {p[0]} {p[1]} {p[2]}", file=f2)
     with open("new_molecule.xyz") as f2:
         print("Starting to generate Hessian Matrix... This will take some time. Take a break. Have a KitKat...( Approx 17 mins.. Python is kinda slow.)")
         mol = Molecule(f2, "Angstrom")
