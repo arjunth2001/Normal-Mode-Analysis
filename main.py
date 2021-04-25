@@ -10,7 +10,7 @@ if __name__ == '__main__':
     print("Starting to make initial configuration.")
     get_config()  # Q1
     init_mol = None
-    with open("new_molecule.xyz") as f:
+    with open("molecule.xyz") as f:
         print("Initial Configuration Generated for Arg LJ Model")
         print("Initial COnfiguration for Q1 will the saved to molecule.xyz")
         init_mol = Molecule(f, "Angstrom")

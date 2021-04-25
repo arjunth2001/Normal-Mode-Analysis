@@ -6,7 +6,6 @@ from pbc import pbc_sep
 def get_config():
     P = []
     count = 0
-    relax = 4
     with open("molecule.xyz", "w") as f:
         print(108, file=f)
         print("\n", end="", file=f)
